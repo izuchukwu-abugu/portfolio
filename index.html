@@ -16,18 +16,7 @@
             body { font-family: 'Inter', -apple-system, sans-serif; background: linear-gradient(135deg, #18181b 0%, #27272a 100%); color: var(--text); margin: 0; line-height: 1.6; }
             
             /* Navigation */
-            nav { 
-                padding: 1.2rem 2rem; 
-                display: flex; 
-                justify-content: center; 
-                gap: 2rem; 
-                position: sticky; 
-                top: 0; 
-                background: rgba(10,10,10,0.85);
-                backdrop-filter: blur(10px);
-                z-index: 1000;
-                border-bottom: 1px solid #333;
-            }
+            nav { padding: 2rem; display: flex; justify-content: center; gap: 2rem; position: sticky; top: 0; background: rgba(10,10,10,0.9); z-index: 1000; }
             nav a { color: var(--text); text-decoration: none; font-weight: 500; transition: color 0.3s; }
             nav a:hover { color: var(--accent); }
 
@@ -175,12 +164,12 @@
 
             <a href="#projects">
                 <i class="fa-solid fa-code"></i>
-                View Projects
+                Projects
             </a>
 
             <a href="./cv/ABUGU_IZUCHUKWU_PAULINUS_CV.pdf" target="_blank">
                 <i class="fa-solid fa-file-arrow-down"></i>
-                Download CV
+                CV
             </a>
 
             <a href="https://github.com/izuchukwu-abugu" target="_blank">
@@ -653,19 +642,19 @@
             </div>
         </div>
         <div class="grid">
-            <div class="card" onclick="openGallery('/img/Photography Certificate.jpg')">
+            <div class="card" onclick="openModal('/img/Photography Certificate.jpg')">
                 <h3>CathCom Studio Photography Certificate</h3>
                 <img src="./img/Photography Certificate.jpg" alt="CathCom Studio Photography Certificate" style="width: 100%; cursor: pointer;">
             </div>
         </div>
         <div class="grid">
-            <div class="card" onclick="openGallery('/img/Teaching Certificate.jpg')">
+            <div class="card" onclick="openModal('/img/Teaching Certificate.jpg')">
                 <h3>Preply Language Teacher Certificate</h3>
                 <img src="./img/Teaching Certificate.jpg" alt="Preply Language Teacher Certificate" style="width: 100%; cursor: pointer;">
             </div>
         </div>
         <div class="grid">
-            <div class="card" onclick="openGallery('/img/EF SET English Certificate.jpg')">
+            <div class="card" onclick="openModal('/img/EF SET English Certificate.jpg')">
                 <h3>EF SET English Certificate</h3>
                 <img src="./img/EF SET English Certificate.jpg" alt="EF SET English Certificate 80/100 (C2 Proficient) Certificate" style="width: 100%; cursor: pointer;">
             </div>
