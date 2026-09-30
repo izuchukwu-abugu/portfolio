@@ -128,6 +128,18 @@
             object-fit: contain;
         }
 
+        .brand-logo-light {
+            display: none;
+        }
+
+        html[data-theme="light"] .brand-logo-dark {
+            display: none;
+        }
+
+        html[data-theme="light"] .brand-logo-light {
+            display: block;
+        }
+
         .brand-name span {
             color: var(--accent);
         }
@@ -1204,7 +1216,8 @@
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <a href="#home" class="brand" aria-label="Izuchukwu Abugu home">
-                <img id="brandLogo" src="./img/Project Logos/IA-Logo-Transparent.png" alt="IA">
+                <img class="brand-logo-dark" src="./img/Project Logos/IA-Logo-Transparent.png" alt="IA">
+                <img class="brand-logo-light" src="./img/Project Logos/IA-Logo-Dark.png" alt="IA">
                 <span class="brand-name">I<span>.</span>ABUGU</span>
             </a>
 
@@ -1816,7 +1829,6 @@
 
         /* THEME TOGGLE */
         const themeToggle = document.getElementById("themeToggle");
-        const brandLogo = document.getElementById("brandLogo");
 
         function updateThemeButton() {
             const isLight =
@@ -1825,13 +1837,11 @@
             const icon = themeToggle.querySelector("i");
 
             if (isLight) {
-                brandLogo.src = "./img/Project Logos/IA-Logo-Dark.png";
                 icon.classList.remove("fa-sun");
                 icon.classList.add("fa-moon");
                 themeToggle.setAttribute("aria-label", "Switch to dark theme");
                 themeToggle.setAttribute("title", "Switch to dark theme");
             } else {
-                brandLogo.src = "./img/Project Logos/IA-Logo-Transparent.png";
                 icon.classList.remove("fa-moon");
                 icon.classList.add("fa-sun");
                 themeToggle.setAttribute("aria-label", "Switch to light theme");
