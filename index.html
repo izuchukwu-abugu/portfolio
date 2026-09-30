@@ -1,745 +1,1941 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Izuchukwu Abugu | Software Developer</title>
-        <link rel="icon" type="image/png" href="./img/20260224_112833.jpg">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-        <style>
-            :root {
-                --bg: #0a0a0a;
-                --text: #e0e0e0;
-                --accent: #00d4ff;
-                --card-bg: #161616;
-            }
-            body { font-family: 'Inter', -apple-system, sans-serif; background: linear-gradient(135deg, #18181b 0%, #27272a 100%); color: var(--text); margin: 0; line-height: 1.6; }
-            
-            /* Navigation */
-            nav { padding: 2rem; display: flex; justify-content: center; gap: 2rem; position: sticky; top: 0; background: rgba(10,10,10,0.9); z-index: 1000; }
-            nav a { color: var(--text); text-decoration: none; font-weight: 500; transition: color 0.3s; }
-            nav a:hover { color: var(--accent); }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Izuchukwu Abugu | Software Developer & AI Creative</title>
+    <meta name="description" content="Portfolio of Izuchukwu Abugu — Software Developer and AI Creative building practical web applications and digital solutions.">
+    <meta name="author" content="Izuchukwu Abugu">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-            /* Sections */
-            section { padding: 2rem 10% 1rem 10%; }
-            h2 { font-size: 2.5rem; color: #fff; margin-bottom: 2rem; border-left: 4px solid var(--accent); padding-left: 1rem; }
+    <style>
+        :root {
+            --bg: #08090b;
+            --bg-soft: #0e1014;
+            --card: #111318;
+            --card-hover: #16191f;
+            --border: rgba(255,255,255,0.09);
+            --border-strong: rgba(255,255,255,0.15);
+            --text: #f2f4f7;
+            --muted: #9ca3af;
+            --muted-light: #c4c8d0;
+            --accent: #00d4ff;
+            --accent-dark: #009fc0;
+            --nav-bg: rgba(8,9,11,0.78);
+            --shadow: rgba(0,0,0,0.35);
+            --radius: 18px;
+            --max-width: 1180px;
+        }
+
+        html[data-theme="light"] {
+            --bg: #f5f7fa;
+            --bg-soft: #edf1f5;
+            --card: #ffffff;
+            --card-hover: #f8fafc;
+            --border: rgba(15,23,42,0.10);
+            --border-strong: rgba(15,23,42,0.16);
+            --text: #101828;
+            --muted: #667085;
+            --muted-light: #344054;
+            --accent: #009fc0;
+            --accent-dark: #007f99;
+            --nav-bg: rgba(245,247,250,0.82);
+            --shadow: rgba(15,23,42,0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .container {
+            width: min(92%, var(--max-width));
+            margin: auto;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            transition: 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 10px 35px var(--shadow);
+        }
+
+        .nav-container {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .brand img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+        }
+
+        .brand-name span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .theme-toggle {
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: var(--card);
+            color: var(--text);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none;
+            border: 0;
+            background: transparent;
+            color: var(--text);
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 120px 0 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 650px;
+            height: 650px;
+            top: -250px;
+            right: -200px;
+            background: radial-gradient(circle, rgba(0,212,255,0.10), transparent 68%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            bottom: -300px;
+            left: -250px;
+            background: radial-gradient(circle, rgba(0,212,255,0.07), transparent 68%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            margin-bottom: 20px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 7vw, 5.8rem);
+            line-height: 0.98;
+            letter-spacing: -0.055em;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero-role {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.2rem, 2vw, 1.6rem);
+            color: var(--muted-light);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            color: var(--muted);
+            font-size: 1.02rem;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 13px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.25s ease;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #061014;
+        }
+
+        .btn-primary:hover {
+            background: #38ddff;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border-strong);
+            color: var(--text);
+            background: var(--card);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 13px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+            transition: 0.25s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .hero-image-wrap {
+            position: relative;
+            width: min(100%, 430px);
+            margin: auto;
+        }
+
+        .hero-image-wrap::before {
+            content: "";
+            position: absolute;
+            inset: 18px -18px -18px 18px;
+            border: 1px solid var(--accent);
+            border-radius: 28px;
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            border-radius: 24px;
+            border: 1px solid var(--border-strong);
+            box-shadow: 0 30px 80px var(--shadow);
+        }
+
+        /* GENERAL SECTIONS */
+        section {
+            padding: 105px 0;
+        }
+
+        .section-heading {
+            max-width: 700px;
+            margin-bottom: 55px;
+        }
+
+        .section-heading .eyebrow {
+            margin-bottom: 13px;
+        }
+
+        .section-heading h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.1rem);
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: 15px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+        }
+
+        /* ABOUT */
+        .about {
+            background: var(--bg-soft);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 0.75fr 1.25fr;
+            gap: 75px;
+            align-items: center;
+        }
+
+        .about-photo-wrap {
+            position: relative;
+            width: min(100%, 390px);
+            margin: auto;
+        }
+
+        .about-photo-wrap::after {
+            content: "";
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            right: -20px;
+            bottom: -20px;
+            border-right: 2px solid var(--accent);
+            border-bottom: 2px solid var(--accent);
+            z-index: 0;
+        }
+
+        .about-photo {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            border-radius: 22px;
+            border: 1px solid var(--border);
+        }
+
+        .about-text h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.7rem;
+            margin-bottom: 18px;
+        }
+
+        .about-text p {
+            color: var(--muted);
+            margin-bottom: 17px;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .highlight {
+            padding: 18px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 13px;
+        }
+
+        .highlight i {
+            color: var(--accent);
+            margin-bottom: 9px;
+        }
+
+        .highlight strong {
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 3px;
+        }
+
+        .highlight span {
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        /* SKILLS */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .skill-card {
+            padding: 27px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0,212,255,0.3);
+            background: var(--card-hover);
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: rgba(0,212,255,0.09);
+            color: var(--accent);
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+        }
+
+        .skill-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+        }
+
+        .skill-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        /* PROJECT */
+        .projects {
+            background: var(--bg-soft);
+        }
+
+        .project-feature {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 60px;
+            align-items: center;
+            padding: 42px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .project-visual {
+            min-height: 330px;
+            display: grid;
+            place-items: center;
+            border-radius: 18px;
+            background:
+                radial-gradient(circle at center, rgba(0,212,255,0.11), transparent 65%),
+                var(--bg-soft);
+            border: 1px solid var(--border);
+        }
+
+        .project-visual img {
+            width: min(75%, 300px);
+            max-height: 220px;
+            object-fit: contain;
+        }
+
+        .project-info .project-label {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            font-size: 0.72rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .project-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 14px;
+        }
+
+        .project-info p {
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .feature-list li {
+            display: flex;
+            gap: 10px;
+            color: var(--muted-light);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .feature-list i {
+            color: var(--accent);
+            margin-top: 5px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 27px;
+        }
+
+        .tech-tag {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            color: var(--muted-light);
+            font-size: 0.75rem;
+            background: var(--bg-soft);
+        }
+
+        /* GALLERY */
+        .gallery-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 30px;
+            margin-bottom: 32px;
+        }
+
+        .gallery-heading p {
+            max-width: 500px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            border-radius: 13px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.45s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-item::after {
+            content: "\f00e";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            background: rgba(0,0,0,0.42);
+            color: white;
+            opacity: 0;
+            transition: 0.25s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .gallery-item.extra-gallery {
+            display: none;
+        }
+
+        .gallery-grid.show-all .gallery-item.extra-gallery {
+            display: block;
+        }
+
+        .gallery-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .gallery-toggle i {
+            transition: transform 0.25s ease;
+        }
+
+        .gallery-toggle.active i {
+            transform: rotate(180deg);
+        }
+
+        /* CREATIVE */
+        .creative {
+            background: var(--bg-soft);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+            margin-bottom: 70px;
+        }
+
+        .video-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .video-wrapper {
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .ai-section {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 55px;
+            align-items: center;
+            padding: 42px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+        }
+
+        .ai-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .ai-content > p {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        .ai-list {
+            list-style: none;
+            margin-bottom: 28px;
+        }
+
+        .ai-list li {
+            display: flex;
+            gap: 11px;
+            color: var(--muted-light);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .ai-list i {
+            color: var(--accent);
+            margin-top: 5px;
+        }
+
+        .tool-heading {
+            font-size: 0.78rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .tool-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tool-tag {
+            padding: 8px 11px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-soft);
+            color: var(--muted-light);
+            font-size: 0.78rem;
+        }
+
+        .tool-tag i {
+            color: var(--accent);
+            margin-right: 5px;
+        }
+
+        .ai-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .ai-stat {
+            padding: 25px 20px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: var(--bg-soft);
+        }
+
+        .ai-stat strong {
+            display: block;
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--accent);
+            font-size: 2rem;
+            line-height: 1;
+            margin-bottom: 9px;
+        }
+
+        .ai-stat span {
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        /* CERTIFICATES */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .certificate-card {
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0,212,255,0.3);
+        }
+
+        .certificate-card img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+        }
+
+        .certificate-info {
+            padding: 15px;
+        }
+
+        .certificate-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .certificate-info p {
+            color: var(--muted);
+            font-size: 0.75rem;
+            margin-top: 4px;
+        }
+
+        /* CONTACT */
+        .contact {
+            background: var(--bg-soft);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 70px;
+        }
+
+        .contact-copy h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.7rem;
+            line-height: 1.1;
+            margin-bottom: 18px;
+        }
+
+        .contact-copy p {
+            color: var(--muted);
+            max-width: 500px;
+            margin-bottom: 25px;
+        }
+
+        .contact-details {
+            display: grid;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            background: var(--card);
+        }
+
+        .contact-item i {
+            width: 36px;
+            height: 36px;
+            display: grid;
+            place-items: center;
+            color: var(--accent);
+            background: rgba(0,212,255,0.08);
+            border-radius: 9px;
+        }
+
+        .contact-item span {
+            color: var(--muted-light);
+            font-size: 0.88rem;
+        }
+
+        .contact-socials {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .contact-social {
+            padding: 22px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: 0.25s ease;
+        }
+
+        .contact-social:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .contact-social i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .contact-social strong {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 3px;
+        }
+
+        .contact-social span {
+            color: var(--muted);
+            font-size: 0.76rem;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 28px 0;
+            border-top: 1px solid var(--border);
+            background: var(--bg);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-content p {
+            color: var(--muted);
+            font-size: 0.78rem;
+        }
+
+        .back-top {
+            color: var(--muted);
+            font-size: 0.8rem;
+            transition: 0.25s ease;
+        }
+
+        .back-top:hover {
+            color: var(--accent);
+        }
+
+        /* IMAGE MODAL */
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            background: rgba(0,0,0,0.88);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            width: min(95vw, 1200px);
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal img {
+            max-width: 100%;
+            max-height: 82vh;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .modal-caption {
+            max-width: 850px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .modal-caption h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+            color: white;
+        }
+
+        .modal-caption p {
+            color: rgba(255,255,255,0.72);
+            font-size: 0.82rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 22px;
+            right: 25px;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            background: rgba(0,0,0,0.45);
+            color: white;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1000px) {
+            .hero-grid,
+            .about-grid,
+            .project-feature,
+            .ai-section,
+            .contact-grid {
+                gap: 45px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .certificates-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .nav-links {
+                position: absolute;
+                top: 72px;
+                left: 0;
+                width: 100%;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 10px 5%;
+                background: var(--nav-bg);
+                border-bottom: 1px solid var(--border);
+                backdrop-filter: blur(18px);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: 0;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 13px 0;
+            }
+
+            .nav-links .theme-item {
+                border-bottom: 0;
+                padding: 8px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
 
             .hero {
-                padding: 6rem 2rem;
-                text-align: center;
-                background: linear-gradient(180deg, #111827 0%, #0a0a0a 100%);
-                border-bottom: 1px solid #333;
+                padding-top: 120px;
             }
 
-            .my-name {
-                font-size: 4rem;
-                margin: 0;
-                color: white;
-                font-weight: 800;
+            .hero-grid,
+            .about-grid,
+            .project-feature,
+            .ai-section,
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
 
-            .my-description {
-                font-size: 1.3rem;
-                color: var(--accent);
-                margin-top: 15px;
-                font-weight: 600;
+            .hero-content {
+                order: 2;
             }
 
-            .hero-text {
-                max-width: 650px;
-                margin: 20px auto;
-                font-size: 1.1rem;
+            .hero-visual {
+                order: 1;
+                max-width: 420px;
+                margin: auto;
+            }
+
+            .about-photo-wrap {
+                max-width: 350px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-feature,
+            .ai-section {
+                padding: 28px;
+            }
+
+            .project-visual {
+                min-height: 260px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            section {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
             }
 
             .hero-buttons {
-                margin-top: 30px;
+                flex-direction: column;
+                align-items: stretch;
             }
 
-            .hero-buttons a {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                padding: 12px 25px;
-                margin: 10px;
-                background: var(--accent);
-                color: #000;
-                text-decoration: none;
-                border-radius: 8px;
-                font-weight: bold;
-                transition: all 0.3s ease;
+            .btn {
+                width: 100%;
             }
 
-            .hero-buttons a:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+            .skills-grid,
+            .gallery-grid,
+            .certificates-grid,
+            .about-highlights,
+            .ai-stats {
+                grid-template-columns: 1fr;
             }
 
-            /* Grid for Projects */
-            .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-            .card { background: var(--card-bg); padding: 2rem; border-radius: 12px; transition: transform 0.3s, border 0.3s; border: 1px solid #333; }
-            .card:hover { transform: translateY(-10px); border-color: var(--accent); }
-
-            /* Video/Media Wrapper */
-            .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
-            .video-wrapper iframe { position: absolute; width: 100%; height: 100%; }
-
-            /* Contact Section */
-            .contact-links a { color: var(--accent); text-decoration: none; font-weight: bold; margin-right: 2rem; }
-
-            .gallery-card img{
-                width:100%;
-                height:auto;
-                max-height:320px;
-                object-fit:contain;
-                object-position:center;
-                border-radius:10px;
-                cursor:pointer;
-                background:#111;
-                transition:.3s ease;
-                display:block;
+            .contact-socials {
+                grid-template-columns: 1fr;
             }
 
-            .gallery-card img:hover{
-                transform:scale(1.02);
+            .gallery-heading {
+                display: block;
             }
 
-            .gallery-card h3 {
-
-                margin-top:20px;
-                color:white;
-
+            .gallery-heading p {
+                margin-top: 12px;
             }
 
-            .gallery-card h3 i {
-
-                color:var(--accent);
-                margin-right:8px;
-
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
             }
 
-            .gallery-card{
-                display:flex;
-                flex-direction:column;
-                justify-content:flex-start;
-                text-align:left;
+            .brand-name {
+                display: none;
             }
 
-            .gallery-card h3{
-                margin:20px 0 10px;
-                color:#fff;
+            .brand img {
+                width: 40px;
+                height: 40px;
             }
-
-            .gallery-card p{
-                color:#cfcfcf;
-                font-size:.95rem;
-                line-height:1.6;
-            }
-        </style>
-    </head>
-    <body>
-
-    <nav>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#creative">Creative Work</a>
-        <a href="#certificates">Certificates</a>
-        <a href="#contact">Contact</a>
-    </nav>
-
-    <section class="hero">
-        <h1 class="my-name">
-            Izuchukwu Abugu
-        </h1>
-
-        <p class="my-description">
-            Aspiring Software Developer | PHP • MySQL • JavaScript
-        </p>
-
-        <p class="hero-text">
-            Building practical web applications and digital solutions focused on solving real-world problems.
-        </p>
-
-        <div class="hero-buttons">
-
-            <a href="#projects">
-                <i class="fa-solid fa-code"></i>
-                Projects
-            </a>
-
-            <a href="./cv/ABUGU_IZUCHUKWU_PAULINUS_CV.pdf" target="_blank">
-                <i class="fa-solid fa-file-arrow-down"></i>
-                CV
-            </a>
-
-            <a href="https://github.com/izuchukwu-abugu" target="_blank">
-                <i class="fa-brands fa-github"></i>
-                GitHub
-            </a>
-
-            <a href="https://linkedin.com/in/izuchukwu-abugu" target="_blank">
-                <i class="fa-brands fa-linkedin"></i>
-                LinkedIn
-            </a>
-
-        </div>
-    </section>
-
-    <section id="about" style="padding-top: 2rem;">
-        <h2>About Me</h2>
-        <div class="about-flex" style="display: flex; align-items: center; gap: 30px; text-align: left; max-width: 800px; margin: 0 auto;">
-            
-            <div style="flex: 0 0 250px;">
-                <img src="./img/My portrait.jpeg" alt="Izuchukwu Paulinus Abugu" 
-                    style="width: 100%; border-radius: 12px; border: 2px solid #00d4ff; box-shadow: 0 10px 30px rgba(0,0,0,0.5);" class="my-portrait">
-            </div>
-
-            <div style="font-size: 1.1rem; color: #e0e0e0;">
-                <p>
-                    I’m <strong>Izuchukwu</strong>, an aspiring software developer passionate about building practical solutions through technology. 
-                    My journey started with frontend development and grew into building complete web applications using PHP, MySQL, JavaScript, HTML, and CSS.
-                    </p>
-
-                    <p>
-                    I led the development of <strong>Studia</strong>, a school management system currently deployed and used by a Nigerian secondary school. 
-                    I enjoy solving problems through software, improving user experiences, and continuously developing my backend engineering skills.
-                    </p>
-            </div>
-        </div>
-
-        <style>
-            @media (max-width: 768px) {
-
-                .about-flex {
-                    flex-direction: column !important;
-                    text-align: center !important;
-                }
-                .contact-links {
-                    justify-content: center;
-                    align-items: center;
-                }
-
-                h2 {
-                    font-size: 1.5rem;
-                }
-
-                .my-name {
-                    font-size: 2rem !important;
-                }
-
-                .my-description {
-                    font-size: 1rem !important;
-                }
-
-                .my-portrait {
-                    width: 80% !important;
-                }
-
-                nav a {
-                    font-size: 0.6rem;
-                }
-            }
-        </style>
-    </section>
-
-    <section id="skills">
-        <h2>Technical Skills</h2>
-
-        <div class="grid">
-
-            <div class="card">
-                <h3>Frontend Development</h3>
-                <p>
-                    HTML, CSS, JavaScript, Responsive Web Design, UI Improvement
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Backend Development</h3>
-                <p>
-                    PHP, MySQL, Database Management, CRUD Operations, Backend Integration
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Tools & Deployment</h3>
-                <p>
-                    Git & GitHub, VS Code, phpMyAdmin, Web Hosting, System Deployment
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Software Practices</h3>
-                <p>
-                    Testing, Debugging, User Feedback, Problem Solving, Documentation
-                </p>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Web Development</h2>
-        <div class="grid">
-            <a href="http://studia.rf.gd/" target="_blank" style="text-decoration: none; color: inherit;">
-                <div class="card">
-                    <div class="head" style="display:flex; justify-content:space-between; align-items:center;">
-                        <h2>Studia</h2>
-
-                        <img src="./img/studia logo.png" 
-                        alt="Studia Logo"
-                        style="width:120px; height:auto;">
-                    </div>
-                    <h3>School Management System</h3>
-                    <p>
-                        Studia is a web-based school management system developed to simplify academic and administrative operations.
-
-                        The platform provides modules for student records, staff management, subject allocation, result computation, promotions, and role-based access control.
-
-                        As the project lead, I worked on frontend implementation, backend integration, testing, debugging, deployment, and continuous improvement of the system.
-
-                        The application is currently deployed and used by a Nigerian secondary school.
-
-                        <br><br>
-
-                        <strong>Technologies:</strong>
-                        PHP • MySQL • JavaScript • HTML • CSS
-
-                        </p>
-                </div>
-            </a>
-            
-
-            <!-- <a href="http://shopmonitor.rf.gd/" target="_blank" style="text-decoration: none; color: inherit;">
-                <div class="card">
-                    <div class="head" style="display: flex; justify-content: space-between; align-items: center;">
-                        <h2>ShopMonitor</h2>
-                        <img src="./img/ShopMonitor logo.jpeg" alt="" srcset="" width="110px" height="100px">
-                    </div>
-                    <h3>Business Management System</h3>
-                    <p>ShopMonitor is an ERP Software project for SMEs that acts as a modern assistant and book-keeper.  It automatically records the stock, the prices both CP & SP, the profits and losses, capital invested and overall worth. It also handles sales, calculates and records the debts incurred, expenses, generates receipts in thermal and A4 mode, provides overall summaries (daily, weekly, monthly etc) using figures, bars and charts! There's also user management where roles are assigned based on who's logged in. Meaning the business owner has total control over what the staff sees and does on their own portal. </p>
-                </div>
-            </a> -->
-        </div>
-    </section>
-
-    <section id="gallery">
-
-        <h2>Studia Project Gallery</h2>
-
-        <p style="max-width:850px;margin-bottom:35px;color:#bbb;">
-            Below are selected screenshots from <strong>Studia</strong>. The platform
-            includes dedicated portals for administrators, teachers, and students,
-            together with academic management, result processing, communication,
-            and school administration features.
-        </p>
-
-        <div class="grid">
-
-            <!-- Landing Page -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Landing Page.png"
-                    onclick="openGallery('./img/Studia Screenshots/Landing Page.png')">
-
-                <h3><i class="fa-solid fa-house"></i> Landing Page</h3>
-
-                <p>
-                    Public homepage introducing the Studia platform and providing
-                    access to the school portal.
-                </p>
-            </div>
-
-
-            <!-- Login -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Login.png"
-                    onclick="openGallery('./img/Studia Screenshots/Login.png')">
-
-                <h3><i class="fa-solid fa-right-to-bracket"></i> Login Portal</h3>
-
-                <p>
-                    Secure authentication system for administrators,
-                    teachers and students.
-                </p>
-            </div>
-
-
-            <!-- Dashboards -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Dashboards.png"
-                    onclick="openGallery('./img/Studia Screenshots/Dashboards.png')">
-
-                <h3><i class="fa-solid fa-gauge-high"></i> User Dashboards</h3>
-
-                <p>
-                    Combined view of the Administrator, Teacher and Student
-                    dashboards showing role-based access.
-                </p>
-            </div>
-
-
-            <!-- Student Enrollment -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Student Enrollment.png"
-                    onclick="openGallery('./img/Studia Screenshots/Student Enrollment.png')">
-
-                <h3><i class="fa-solid fa-user-plus"></i> Student Enrollment</h3>
-
-                <p>
-                    Register and manage student admissions into the system.
-                </p>
-            </div>
-
-
-            <!-- Staff Enrollment -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Staff Enrollment.png"
-                    onclick="openGallery('./img/Studia Screenshots/Staff Enrollment.png')">
-
-                <h3><i class="fa-solid fa-user-tie"></i> Staff Enrollment</h3>
-
-                <p>
-                    Add teachers and non-teaching staff into the platform.
-                </p>
-            </div>
-
-
-            <!-- Student List -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Student List.png"
-                    onclick="openGallery('./img/Studia Screenshots/Student List.png')">
-
-                <h3><i class="fa-solid fa-list"></i> Student Directory</h3>
-
-                <p>
-                    Browse, search and manage all registered students.
-                </p>
-            </div>
-
-
-            <!-- Student Profile -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Student Profile.png"
-                    onclick="openGallery('./img/Studia Screenshots/Student Profile.png')">
-
-                <h3><i class="fa-solid fa-id-card"></i> Student Profile</h3>
-
-                <p>
-                    Comprehensive student profile containing academic and personal
-                    information.
-                </p>
-            </div>
-
-
-            <!-- Staff Profile -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/teacher profile.png"
-                    onclick="openGallery('./img/Studia Screenshots/teacher Profile.png')">
-
-                <h3><i class="fa-solid fa-address-card"></i> Staff Profile</h3>
-
-                <p>
-                    Teacher profile with assigned classes, subjects and details.
-                </p>
-            </div>
-
-            <!-- Results -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Results.png"
-                    onclick="openGallery('./img/Studia Screenshots/Results.png')">
-
-                <h3><i class="fa-solid fa-chart-column"></i> Student Results</h3>
-
-                <p>
-                    Professionally formatted report cards generated automatically.
-                </p>
-            </div>
-
-
-            <!-- Subject Allocation -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Subject Allocation.png"
-                    onclick="openGallery('./img/Studia Screenshots/Subject Allocation.png')">
-
-                <h3><i class="fa-solid fa-book-open"></i> Subject Allocation</h3>
-
-                <p>
-                    Assign teachers to subjects and classes.
-                </p>
-            </div>
-
-
-            <!-- Form Teacher -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Form Teacher Allocation.png"
-                    onclick="openGallery('./img/Studia Screenshots/Form Teacher Allocation.png')">
-
-                <h3><i class="fa-solid fa-chalkboard-user"></i> Form Teacher Allocation</h3>
-
-                <p>
-                    Allocate teachers as class teachers for different classes.
-                </p>
-            </div>
-
-
-            <!-- Manage Subjects -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/manage subject.png"
-                    onclick="openGallery('./img/Studia Screenshots/Manage Subject.png')">
-
-                <h3><i class="fa-solid fa-book"></i> Subject Management</h3>
-
-                <p>
-                    Create, edit and organize school subjects.
-                </p>
-            </div>
-
-            <!-- Score Entry -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Score Entry.png"
-                    onclick="openGallery('./img/Studia Screenshots/Score Entry.png')">
-
-                <h3><i class="fa-solid fa-pen"></i> Score Entry</h3>
-
-                <p>
-                    Teachers record continuous assessment and examination scores.
-                </p>
-            </div>
-
-            <!-- Master Sheet -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Master Sheet.png"
-                    onclick="openGallery('./img/Studia Screenshots/Master Sheet.png')">
-
-                <h3><i class="fa-solid fa-table"></i> Master Result Sheet</h3>
-
-                <p>
-                    Consolidated academic performance for an entire class.
-                </p>
-            </div>
-
-            <!-- Publication -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/result publication.png"
-                    onclick="openGallery('./img/Studia Screenshots/Result Publication.png')">
-
-                <h3><i class="fa-solid fa-bullhorn"></i> Result Publication Portal</h3>
-
-                <p>
-                    Control when academic results become visible to students.
-                </p>
-            </div>
-
-
-            <!-- Promotion -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Promotion and Demotion Hub.png"
-                    onclick="openGallery('./img/Studia Screenshots/Promotion and Demotion Hub.png')">
-
-                <h3><i class="fa-solid fa-arrow-up-right-dots"></i> Promotion Hub</h3>
-
-                <p>
-                    Promote or retain students automatically between classes.
-                </p>
-            </div>
-
-
-            <!-- Upload Notes -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Upload Notes.png"
-                    onclick="openGallery('./img/Studia Screenshots/Upload Notes.png')">
-
-                <h3><i class="fa-solid fa-upload"></i> Upload Notes</h3>
-
-                <p>
-                    Teachers upload learning materials for students.
-                </p>
-            </div>
-
-
-            <!-- View Notes -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/View Notes.png"
-                    onclick="openGallery('./img/Studia Screenshots/View Notes.png')">
-
-                <h3><i class="fa-solid fa-file-lines"></i> Student Notes</h3>
-
-                <p>
-                    Students access downloadable classroom notes and resources.
-                </p>
-            </div>
-
-
-            <!-- Alumni -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Alumni.png"
-                    onclick="openGallery('./img/Studia Screenshots/Alumni.png')">
-
-                <h3><i class="fa-solid fa-user-graduate"></i> Alumni Management</h3>
-
-                <p>
-                    Archive graduating students while preserving academic records.
-                </p>
-            </div>
-
-
-            <!-- Settings -->
-            <div class="card gallery-card">
-                <img src="./img/Studia Screenshots/Settings.png"
-                    onclick="openGallery('./img/Studia Screenshots/Settings.png')">
-
-                <h3><i class="fa-solid fa-gear"></i> System Settings</h3>
-
-                <p>
-                    Configure academic sessions, grading, school preferences and
-                    platform settings.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section id="creative" style="padding: 5rem 10% 1rem 10%;">
-        <h2>Video Editing</h2>
-        
-        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-            
-            <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/s4z1hckKOzE" frameborder="0" allowfullscreen></iframe>
-            </div>
-
-            <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/wqCyPRWUd_w" frameborder="0" allowfullscreen></iframe>
-            </div>
-            
-        </div>
-    </section>
-
-    <style>
-        /* Add this to your style block */
-        .video-wrapper { 
-            position: relative; 
-            width: 350px; 
-            height: auto; 
-            border-radius: 12px; 
-            overflow: hidden; 
-            border: 1px solid #333;
-        }
-        .video-wrapper iframe { 
-            width: 100%; 
-            height: 100%; 
         }
     </style>
 
-    <section id="certificates" style="padding: 5rem 10% 1rem 10%;">
-        <h2>Certifications</h2>
-        <div class="grid">
-            <div class="card" onclick="openGallery('/img/CERTIFICATE_LANDING_PAGE~8S7K3XFX3GEZ.jpeg')">
-                <h3>Johns Hopkins Web Development Certificate</h3>
-                <img src="./img/CERTIFICATE_LANDING_PAGE~8S7K3XFX3GEZ.jpeg" alt="Johns Hopkins Web Development Certificate" style="width: 100%; cursor: pointer;">
-            </div>
-        </div>
-        <div class="grid">
-            <div class="card" onclick="openModal('/img/Photography Certificate.jpg')">
-                <h3>CathCom Studio Photography Certificate</h3>
-                <img src="./img/Photography Certificate.jpg" alt="CathCom Studio Photography Certificate" style="width: 100%; cursor: pointer;">
-            </div>
-        </div>
-        <div class="grid">
-            <div class="card" onclick="openModal('/img/Teaching Certificate.jpg')">
-                <h3>Preply Language Teacher Certificate</h3>
-                <img src="./img/Teaching Certificate.jpg" alt="Preply Language Teacher Certificate" style="width: 100%; cursor: pointer;">
-            </div>
-        </div>
-        <div class="grid">
-            <div class="card" onclick="openModal('/img/EF SET English Certificate.jpg')">
-                <h3>EF SET English Certificate</h3>
-                <img src="./img/EF SET English Certificate.jpg" alt="EF SET English Certificate 80/100 (C2 Proficient) Certificate" style="width: 100%; cursor: pointer;">
-            </div>
-        </div>
-    </section>
-
-    <!-- Simple Modal Structure -->
-    <div id="designModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center;">
-        <span onclick="closeModal()" style="position:absolute; top:20px; right:30px; cursor:pointer; font-size:40px;">&times;</span>
-        <img id="modalImage" style="max-width: 80%; max-height: 80%;">
-    </div>
-
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <div class="contact-links" style="display: flex; gap: 20px; flex-wrap: wrap;">
-            
-            <a href="mailto:abuguizuchukwu14@gmail.com" style="color: var(--accent); text-decoration: none;">
-                <i class="fa-solid fa-envelope"></i> Email Me
-            </a>
-
-            <a href="https://wa.me/2349126599685" target="_blank" style="color: var(--accent); text-decoration: none;">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-            </a>
-            
-            <a href="https://www.github.com/izuchukwu-abugu" target="_blank" style="color: var(--accent); text-decoration: none;">
-                <i class="fa-brands fa-github"></i> GitHub
-            </a>
-            
-            <a href="https://www.linkedin.com/in/izuchukwu-abugu/" target="_blank" style="color: var(--accent); text-decoration: none;">
-                <i class="fa-brands fa-linkedin"></i> LinkedIn
-            </a>
-            
-            <a href="https://www.facebook.com/oscar.abugu/" target="_blank" style="color: var(--accent); text-decoration: none;">
-                <i class="fa-brands fa-facebook"></i> Facebook
-            </a>
-
-            <a href="https://www.x.com/1armanie" target="_blank" style="color: var(--accent); text-decoration: none;">
-                <i class="fa-brands fa-x-twitter"></i> Twitter
-            </a>
-
-            <a href="https://www.instagram.com/1armanie" target="_blank" style="color: var(--accent); text-decoration: none;">
-                <i class="fa-brands fa-instagram"></i> Instagram
-            </a>
-
-            <a href="https://youtube.com/@armanie4l?si=dl_Skh_DxDWjI4GY" target="_blank" style="color: var(--accent); text-decoration: none;">
-                <i class="fa-brands fa-youtube"></i> Youtube
-            </a>
-            
-        </div>
-    </section>
     <script>
-    function openGallery(imageSrc) {
-
-        const modal = document.getElementById("designModal");
-        const modalImage = document.getElementById("modalImage");
-
-        modalImage.src = imageSrc;
-
-        modal.style.display = "flex";
-
-    }
-
-
-    function closeModal() {
-        const modal = document.getElementById("designModal");
-        modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        const modal = document.getElementById("designModal");
-
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    }
+        (function () {
+            const savedTheme = localStorage.getItem("portfolio-theme");
+            if (savedTheme === "light") {
+                document.documentElement.setAttribute("data-theme", "light");
+            }
+        })();
     </script>
-    </body>
+</head>
 
-    <footer style="padding: 40px 20px; text-align: center; border-top: 1px solid #333; margin-top: 50px;">
-        <p style="color: #888; font-size: 0.9rem;">
-            &copy; 2026 Izuchukwu Paulinus Abugu. Built with passion.
-        </p>
-        <div style="margin-top: 10px;">
-            <a href="#" style="color: #888; text-decoration: none; margin: 0 10px; font-size: 0.8rem;">Back to Top</a>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="brand" aria-label="Izuchukwu Abugu home">
+                <img src="./img/Project Logos/IA-Logo-Transparent.png" alt="IA">
+                <span class="brand-name">I<span>.</span>ABUGU</span>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#creative">Creative</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="theme-item">
+                    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme" title="Switch theme">
+                        <i class="fa-solid fa-sun"></i>
+                    </button>
+                </li>
+            </ul>
+
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="eyebrow">Welcome to my portfolio</div>
+                    <h1>Izuchukwu<br><span>Abugu.</span></h1>
+                    <div class="hero-role">Software Developer & AI Creative</div>
+                    <p class="hero-description">
+                        I build practical web applications and digital solutions,
+                        while exploring the creative possibilities of AI-assisted
+                        video and animation.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            Explore My Work
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                        <a href="./CV.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                            View CV
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://github.com/izuchukwu-abugu" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/izuchukwu-abugu/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.facebook.com/oscar.abugu" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="https://x.com/1armanie" target="_blank" rel="noopener noreferrer" aria-label="X">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-image-wrap">
+                        <img src="./img/My Portraits/My portrait.jpeg" alt="Izuchukwu Abugu" class="hero-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="about" id="about">
+            <div class="container">
+                <div class="section-heading">
+                    <div class="eyebrow">About Me</div>
+                    <h2>Building with purpose, learning by doing.</h2>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-photo-wrap">
+                        <img src="./img/My Portraits/about-photo.jpg" alt="Izuchukwu Abugu" class="about-photo">
+                    </div>
+
+                    <div class="about-text">
+                        <h3>A little about me</h3>
+                        <p>
+                            I'm Izuchukwu Abugu, a Psychology graduate and software
+                            developer from Nigeria with a growing interest in
+                            building useful digital products.
+                        </p>
+                        <p>
+                            My work sits at the intersection of software development,
+                            problem-solving and creative technology. I enjoy taking
+                            an idea, understanding what it needs to accomplish, and
+                            turning it into something practical that people can use.
+                        </p>
+                        <p>
+                            I also explore AI-assisted creative production, including
+                            short-form video and animation, alongside my software
+                            development work.
+                        </p>
+
+                        <div class="about-highlights">
+                            <div class="highlight">
+                                <i class="fa-solid fa-code"></i>
+                                <strong>Software Development</strong>
+                                <span>Web applications & digital systems</span>
+                            </div>
+                            <div class="highlight">
+                                <i class="fa-solid fa-lightbulb"></i>
+                                <strong>Problem Solving</strong>
+                                <span>Turning ideas into practical solutions</span>
+                            </div>
+                            <div class="highlight">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <strong>AI Creativity</strong>
+                                <span>AI-assisted video & animation</span>
+                            </div>
+                            <div class="highlight">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                                <strong>Continuous Learning</strong>
+                                <span>Always building and improving</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills">
+            <div class="container">
+                <div class="section-heading">
+                    <div class="eyebrow">What I Do</div>
+                    <h2>Technical Skills</h2>
+                    <p>
+                        A practical collection of technologies and capabilities
+                        I use to build, deploy and maintain digital projects.
+                    </p>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                        <h3>Frontend Development</h3>
+                        <p>
+                            HTML, CSS, JavaScript and responsive interface
+                            development for modern web experiences.
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fa-solid fa-server"></i></div>
+                        <h3>Backend Development</h3>
+                        <p>
+                            PHP and MySQL for building dynamic applications,
+                            databases, authentication and business logic.
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                        <h3>Tools & Deployment</h3>
+                        <p>
+                            GitHub, shared hosting, domain deployment,
+                            debugging and maintaining live applications.
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fa-solid fa-layer-group"></i></div>
+                        <h3>Software Practices</h3>
+                        <p>
+                            Database design, feature planning, testing,
+                            troubleshooting and continuous improvement.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="projects" id="projects">
+            <div class="container">
+                <div class="section-heading">
+                    <div class="eyebrow">Featured Project</div>
+                    <h2>Building real software, not just demos.</h2>
+                    <p>
+                        A look at one of the systems I've designed and developed
+                        from the ground up.
+                    </p>
+                </div>
+
+                <div class="project-feature">
+                    <div class="project-visual">
+                        <img src="./img/Project Logos/Studia Logo.png" alt="Studia logo">
+                    </div>
+
+                    <div class="project-info">
+                        <div class="project-label">School Management System</div>
+                        <h3>Studia</h3>
+                        <p>
+                            Studia is a school management and student information
+                            system designed to help schools manage students,
+                            teachers, academics, results and other core school
+                            operations from one platform.
+                        </p>
+
+                        <ul class="feature-list">
+                            <li><i class="fa-solid fa-check"></i>Student enrollment and management</li>
+                            <li><i class="fa-solid fa-check"></i>Teacher and staff management</li>
+                            <li><i class="fa-solid fa-check"></i>Result management and publication</li>
+                            <li><i class="fa-solid fa-check"></i>Subject and class management</li>
+                            <li><i class="fa-solid fa-check"></i>Promotion and academic records</li>
+                            <li><i class="fa-solid fa-check"></i>Notes and learning resources</li>
+                        </ul>
+
+                        <div class="tech-tags">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                        </div>
+
+                        <a href="https://justiceschool.com.ng" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            Visit Studia
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STUDIA GALLERY -->
+        <section>
+            <div class="container">
+                <div class="gallery-heading">
+                    <div>
+                        <div class="eyebrow">Inside Studia</div>
+                        <h2>Project Gallery</h2>
+                    </div>
+                    <p>
+                        A selection of screens from the Studia school management
+                        system. View the full gallery to explore more modules.
+                    </p>
+                </div>
+
+                <div class="gallery-grid" id="studiaGallery">
+                    <!-- Featured screenshots -->
+                    <div class="gallery-item" onclick="openGallery('./img/Studia Screenshots/Landing Page.png', 'Landing Page', 'The public-facing landing page introducing the Studia school management system.')">
+                        <img src="./img/Studia Screenshots/Landing Page.png" alt="Studia landing page">
+                    </div>
+
+                    <div class="gallery-item" onclick="openGallery('./img/Studia Screenshots/Dashboards.png', 'Dashboards', 'Central dashboards providing quick access to important school information and system modules.')">
+                        <img src="./img/Studia Screenshots/Dashboards.png" alt="Studia dashboards">
+                    </div>
+
+                    <div class="gallery-item" onclick="openGallery('./img/Studia Screenshots/Results.png', 'Results Management', 'Academic results management for entering, reviewing and working with student performance records.')">
+                        <img src="./img/Studia Screenshots/Results.png" alt="Results management">
+                    </div>
+
+                    <!-- Additional screenshots -->
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/Login.png', 'Login Page', 'Secure login interface for accessing the appropriate Studia account and dashboard.')">
+                        <img src="./img/Studia Screenshots/Login.png" alt="Studia login page">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/Student Enrollment.png', 'Student Enrollment', 'Student enrollment interface for adding and organizing student records.')">
+                        <img src="./img/Studia Screenshots/Student Enrollment.png" alt="Student enrollment">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/Staff Enrollment.png', 'Staff Enrollment', 'Interface for registering and managing staff members within the school system.')">
+                        <img src="./img/Studia Screenshots/Staff Enrollment.png" alt="Staff enrollment">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/Student List.png', 'Student List', 'A structured view of enrolled students with information organized for easy management.')">
+                        <img src="./img/Studia Screenshots/Student List.png" alt="Student list">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/Student Profile.png', 'Student Profile', 'Detailed student profile containing individual academic and administrative information.')">
+                        <img src="./img/Studia Screenshots/Student Profile.png" alt="Student profile">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/teacher profile.png', 'Teacher Profile', 'Teacher profile interface for viewing and managing staff-related information.')">
+                        <img src="./img/Studia Screenshots/teacher profile.png" alt="Teacher profile">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/Subject Allocation.png', 'Subject Allocation', 'Interface for assigning subjects to the appropriate classes and academic levels.')">
+                        <img src="./img/Studia Screenshots/Subject Allocation.png" alt="Subject allocation">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/Form Teacher Allocation.png', 'Form Teacher Allocation', 'Tools for assigning form teachers to classes and managing those responsibilities.')">
+                        <img src="./img/Studia Screenshots/Form Teacher Allocation.png" alt="Form teacher allocation">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/manage subject.png', 'Manage Subjects', 'Subject management interface for organizing subjects available within the school.')">
+                        <img src="./img/Studia Screenshots/manage subject.png" alt="Manage subjects">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/Score Entry.png', 'Score Entry', 'Interface for teachers to enter student scores for academic assessment.')">
+                        <img src="./img/Studia Screenshots/Score Entry.png" alt="Score entry">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/Master Sheet.png', 'Master Sheet', 'A consolidated academic sheet bringing student performance records together for review.')">
+                        <img src="./img/Studia Screenshots/Master Sheet.png" alt="Master sheet">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/result publication.png', 'Result Publication', 'Controls for publishing completed academic results for student and parent access.')">
+                        <img src="./img/Studia Screenshots/result publication.png" alt="Result publication">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/Promotion and Demotion Hub.png', 'Promotion and Demotion Hub', 'Tools for managing student promotion and movement between academic levels.')">
+                        <img src="./img/Studia Screenshots/Promotion and Demotion Hub.png" alt="Promotion and demotion hub">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/Upload Notes.png', 'Upload Notes', 'Teachers can upload learning materials and notes for students to access.')">
+                        <img src="./img/Studia Screenshots/Upload Notes.png" alt="Upload notes">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/View Notes.png', 'View Notes', 'Student-facing interface for accessing uploaded learning materials and notes.')">
+                        <img src="./img/Studia Screenshots/View Notes.png" alt="View notes">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/Alumni.png', 'Alumni', 'Alumni management interface for keeping track of former students and their records.')">
+                        <img src="./img/Studia Screenshots/Alumni.png" alt="Alumni">
+                    </div>
+
+                    <div class="gallery-item extra-gallery" onclick="openGallery('./img/Studia Screenshots/Settings.png', 'Settings', 'System settings for configuring important aspects of the school deployment.')">
+                        <img src="./img/Studia Screenshots/Settings.png" alt="Studia settings">
+                    </div>
+                </div>
+
+                <div class="gallery-actions">
+                    <button class="btn btn-secondary gallery-toggle" id="galleryToggle" type="button">
+                        View All Screenshots
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CREATIVE -->
+        <section class="creative" id="creative">
+            <div class="container">
+                <div class="section-heading">
+                    <div class="eyebrow">Creative Work</div>
+                    <h2>Video Editing & AI Animation</h2>
+                    <p>
+                        Alongside software development, I create and edit
+                        short-form digital content using traditional editing
+                        tools and AI-assisted production techniques.
+                    </p>
+                </div>
+
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe
+                                src="https://www.youtube.com/embed/s4z1hckKOzE"
+                                title="Video editing work"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe
+                                src="https://www.youtube.com/embed/wqCyPRWUd_w"
+                                title="Creative video work"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-section">
+                    <div class="ai-content">
+                        <div class="eyebrow">AI Video & Animation</div>
+                        <h3>Creating short-form animated content with AI.</h3>
+                        <p>
+                            I have developed practical experience producing
+                            short AI-assisted animated videos, from visual
+                            creation and scene development to animation,
+                            editing and final assembly.
+                        </p>
+
+                        <ul class="ai-list">
+                            <li><i class="fa-solid fa-check"></i>AI-assisted visual and scene creation</li>
+                            <li><i class="fa-solid fa-check"></i>Character and visual consistency across scenes</li>
+                            <li><i class="fa-solid fa-check"></i>Scene animation and short-form storytelling</li>
+                            <li><i class="fa-solid fa-check"></i>Video assembly, editing and final production</li>
+                        </ul>
+
+                        <div class="tool-heading">Tools & Production Stack</div>
+
+                        <div class="tool-stack">
+                            <span class="tool-tag"><i class="fa-solid fa-wand-magic-sparkles"></i>Grok</span>
+                            <span class="tool-tag"><i class="fa-solid fa-film"></i>Google Flow</span>
+                            <span class="tool-tag"><i class="fa-solid fa-scissors"></i>CapCut</span>
+                            <span class="tool-tag"><i class="fa-solid fa-wand-magic-sparkles"></i>CapCut AI</span>
+                            <span class="tool-tag"><i class="fa-solid fa-video"></i>VN Video Editor</span>
+                        </div>
+
+                        <br>
+
+                        <a href="[AI_SHOWREEL_LINK]" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                            View AI Showreel
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+
+                    <div class="ai-stats">
+                        <div class="ai-stat">
+                            <strong>100+</strong>
+                            <span>Short AI-animated videos completed</span>
+                        </div>
+                        <div class="ai-stat">
+                            <strong>5</strong>
+                            <span>Tools used across the production process</span>
+                        </div>
+                        <div class="ai-stat">
+                            <strong>AI</strong>
+                            <span>Assisted visual creation and animation</span>
+                        </div>
+                        <div class="ai-stat">
+                            <strong>+</strong>
+                            <span>Growing creative production experience</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATES -->
+        <section id="certificates">
+            <div class="container">
+                <div class="section-heading">
+                    <div class="eyebrow">Credentials</div>
+                    <h2>Certificates & Learning</h2>
+                    <p>
+                        Selected certifications and learning milestones
+                        from my professional development.
+                    </p>
+                </div>
+
+                <div class="certificates-grid">
+                    <div class="certificate-card" onclick="openGallery('./img/Certificates/CERTIFICATE_LANDING_PAGE~8S7K3XFX3GEZ.jpeg', 'Professional Certificate', 'Certificate of completion.')">
+                        <img src="./img/Certificates/CERTIFICATE_LANDING_PAGE~8S7K3XFX3GEZ.jpeg" alt="Certificate">
+                        <div class="certificate-info">
+                            <h3>Professional Certificate</h3>
+                            <p>Certificate of completion</p>
+                        </div>
+                    </div>
+
+                    <div class="certificate-card" onclick="openGallery('./img/Certificates/Photography Certificate.jpg', 'Photography Certificate', 'Creative development certificate.')">
+                        <img src="./img/Certificates/Photography Certificate.jpg" alt="Photography Certificate">
+                        <div class="certificate-info">
+                            <h3>Photography Certificate</h3>
+                            <p>Creative development</p>
+                        </div>
+                    </div>
+
+                    <div class="certificate-card" onclick="openGallery('./img/Certificates/Teaching Certificate.jpg', 'Teaching Certificate', 'Professional development certificate.')">
+                        <img src="./img/Certificates/Teaching Certificate.jpg" alt="Teaching Certificate">
+                        <div class="certificate-info">
+                            <h3>Teaching Certificate</h3>
+                            <p>Professional development</p>
+                        </div>
+                    </div>
+
+                    <div class="certificate-card" onclick="openGallery('./img/Certificates/EF SET English Certificate.jpg', 'EF SET English Certificate', 'English proficiency certificate.')">
+                        <img src="./img/Certificates/EF SET English Certificate.jpg" alt="EF SET English Certificate">
+                        <div class="certificate-info">
+                            <h3>EF SET English Certificate</h3>
+                            <p>English proficiency</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-copy">
+                        <div class="eyebrow">Get In Touch</div>
+                        <h2>Let's build something useful.</h2>
+                        <p>
+                            Whether it's a software project, creative work,
+                            collaboration or a professional opportunity,
+                            I'm always open to meaningful conversations.
+                        </p>
+
+                        <div class="contact-details">
+                            <a href="mailto:abuguizuchukwu14@gmail.com" class="contact-item">
+                                <i class="fa-solid fa-envelope"></i>
+                                <span>abuguizuchukwu14@gmail.com</span>
+                            </a>
+
+                            <a href="https://wa.me/2349126599685" target="_blank" rel="noopener noreferrer" class="contact-item">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span>WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-socials">
+                        <a href="https://github.com/izuchukwu-abugu" target="_blank" rel="noopener noreferrer" class="contact-social">
+                            <i class="fa-brands fa-github"></i>
+                            <strong>GitHub</strong>
+                            <span>View my code & projects</span>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/izuchukwu-abugu/" target="_blank" rel="noopener noreferrer" class="contact-social">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                            <strong>LinkedIn</strong>
+                            <span>Professional profile</span>
+                        </a>
+
+                        <a href="https://www.facebook.com/oscar.abugu" target="_blank" rel="noopener noreferrer" class="contact-social">
+                            <i class="fa-brands fa-facebook-f"></i>
+                            <strong>Facebook</strong>
+                            <span>Connect with me</span>
+                        </a>
+
+                        <a href="https://x.com/1armanie" target="_blank" rel="noopener noreferrer" class="contact-social">
+                            <i class="fa-brands fa-x-twitter"></i>
+                            <strong>X</strong>
+                            <span>Follow my updates</span>
+                        </a>
+
+                        <a href="https://www.instagram.com/1armanie" target="_blank" rel="noopener noreferrer" class="contact-social">
+                            <i class="fa-brands fa-instagram"></i>
+                            <strong>Instagram</strong>
+                            <span>Creative work & updates</span>
+                        </a>
+
+                        <a href="https://youtube.com/@armanie4l" target="_blank" rel="noopener noreferrer" class="contact-social">
+                            <i class="fa-brands fa-youtube"></i>
+                            <strong>YouTube</strong>
+                            <span>Video work</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <p>© <span id="year"></span> Izuchukwu Abugu. All rights reserved.</p>
+            <a href="#home" class="back-top">
+                Back to top
+                <i class="fa-solid fa-arrow-up"></i>
+            </a>
         </div>
     </footer>
+
+    <!-- IMAGE MODAL -->
+    <div class="modal" id="imageModal" onclick="closeModal(event)">
+        <button class="modal-close" type="button" aria-label="Close image" onclick="closeModal()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Expanded portfolio image">
+            <div class="modal-caption" id="modalCaption"></div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        /* YEAR */
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        /* MOBILE NAVIGATION */
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+            const icon = menuToggle.querySelector("i");
+
+            if (navLinks.classList.contains("active")) {
+                icon.classList.remove("fa-bars");
+                icon.classList.add("fa-xmark");
+            } else {
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+            }
+        });
+
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("active");
+                const icon = menuToggle.querySelector("i");
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+            });
+        });
+
+        /* NAVBAR SCROLL */
+        const navbar = document.getElementById("navbar");
+
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 30) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+
+        /* THEME TOGGLE */
+        const themeToggle = document.getElementById("themeToggle");
+
+        function updateThemeButton() {
+            const isLight =
+                document.documentElement.getAttribute("data-theme") === "light";
+
+            const icon = themeToggle.querySelector("i");
+
+            if (isLight) {
+                icon.classList.remove("fa-sun");
+                icon.classList.add("fa-moon");
+                themeToggle.setAttribute("aria-label", "Switch to dark theme");
+                themeToggle.setAttribute("title", "Switch to dark theme");
+            } else {
+                icon.classList.remove("fa-moon");
+                icon.classList.add("fa-sun");
+                themeToggle.setAttribute("aria-label", "Switch to light theme");
+                themeToggle.setAttribute("title", "Switch to light theme");
+            }
+        }
+
+        updateThemeButton();
+
+        themeToggle.addEventListener("click", function () {
+            const isLight =
+                document.documentElement.getAttribute("data-theme") === "light";
+
+            if (isLight) {
+                document.documentElement.removeAttribute("data-theme");
+                localStorage.setItem("portfolio-theme", "dark");
+            } else {
+                document.documentElement.setAttribute("data-theme", "light");
+                localStorage.setItem("portfolio-theme", "light");
+            }
+
+            updateThemeButton();
+        });
+
+        /* PROJECT GALLERY */
+        const gallery = document.getElementById("studiaGallery");
+        const galleryToggle = document.getElementById("galleryToggle");
+
+        galleryToggle.addEventListener("click", function () {
+            const isExpanded = gallery.classList.toggle("show-all");
+            galleryToggle.classList.toggle("active", isExpanded);
+
+            if (isExpanded) {
+                galleryToggle.innerHTML = 'Show Less <i class="fa-solid fa-chevron-up"></i>';
+            } else {
+                galleryToggle.innerHTML = 'View All Screenshots <i class="fa-solid fa-chevron-down"></i>';
+            }
+        });
+
+        /* IMAGE MODAL */
+        function openGallery(imagePath, title = "", description = "") {
+            const modal = document.getElementById("imageModal");
+            const modalImage = document.getElementById("modalImage");
+            const modalCaption = document.getElementById("modalCaption");
+
+            modalImage.src = imagePath;
+            modalImage.alt = title || "Expanded portfolio image";
+
+            if (title || description) {
+                modalCaption.innerHTML = `
+                    ${title ? `<h3>${title}</h3>` : ""}
+                    ${description ? `<p>${description}</p>` : ""}
+                `;
+            } else {
+                modalCaption.innerHTML = "";
+            }
+
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal(event) {
+            if (
+                event &&
+                event.target &&
+                event.target.id !== "imageModal" &&
+                !event.target.closest(".modal-close")
+            ) {
+                return;
+            }
+
+            const modal = document.getElementById("imageModal");
+            modal.classList.remove("active");
+            document.getElementById("modalImage").src = "";
+            document.getElementById("modalCaption").innerHTML = "";
+            document.body.style.overflow = "";
+        }
+
+        /* ESCAPE TO CLOSE MODAL */
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                const modal = document.getElementById("imageModal");
+
+                if (modal.classList.contains("active")) {
+                    closeModal();
+                }
+
+                if (navLinks.classList.contains("active")) {
+                    navLinks.classList.remove("active");
+                    const icon = menuToggle.querySelector("i");
+                    icon.classList.remove("fa-xmark");
+                    icon.classList.add("fa-bars");
+                }
+            }
+        });
+    </script>
+
+</body>
 </html>
